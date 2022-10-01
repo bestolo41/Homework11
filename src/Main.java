@@ -8,30 +8,26 @@ public class Main {
         int deliveryDistance = 40;
         calculatesLeapYear(year);
         installationLink(clientOS, clientDeviceYear);
-        deliveryTime(deliveryDistance);
+        System.out.println("Дней доставки: " + deliveryTime(deliveryDistance));
     }
-    public static void calculatesLeapYear(int year) {
+    private static void calculatesLeapYear(int year) {
 
-        if (year % 4 == 0 && year % 100 != 0) {
-            System.out.printf("%d год является високосным", year);
-        } else if (year % 400 == 0) {
-            System.out.printf("%d год является високосным", year);
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+            System.out.println(year + " год является високосным");
         } else {
-            System.out.printf("%d год не является високосным", year);
+            System.out.println(year + " год не является високосным");
         }
     }
 
-    public static void installationLink(String clientOS, int clientDeviceYear) {
+    private static void installationLink(String clientOS, int clientDeviceYear) {
         int currentYear = LocalDate.now().getYear();
         if (clientOS == "iOS") {
-            System.out.println("Укажите год выпуска вашего девайса:");
             if (clientDeviceYear >= currentYear) {
                 System.out.println("Установите версию приложения для iOS по ссылке");
             } else {
                 System.out.println("Установите облегченную версию приложения для iOS по ссылке");
             }
         } else if (clientOS == "Android") {
-            System.out.println("Укажите год выпуска вашего девайса:");
             if (clientDeviceYear >= currentYear) {
                 System.out.println("Установите версию приложения для Android по ссылке");
             } else {
@@ -42,15 +38,15 @@ public class Main {
         }
     }
 
-    public static void deliveryTime(int deliveryDistance) {
+    private static int deliveryTime(int deliveryDistance) {
 
         int deliveryTime = 1;
 
         if (deliveryDistance <= 20) {
-            System.out.println("Потребуется дней: " + deliveryTime);
+            return deliveryTime;
         } else {
             deliveryTime = ((deliveryDistance - 20) / 40) * deliveryTime + 2;
-            System.out.println("Потребуется дней: " + deliveryTime);
+            return deliveryTime;
         }
     }
 }
